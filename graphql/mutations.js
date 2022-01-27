@@ -29,6 +29,7 @@ const register = {
 };
 const login = {
   type: GraphQLString,
+  description: "Login a user and returns token",
   args: {
     email: { type: GraphQLString },
     password: { type: GraphQLString },
@@ -47,7 +48,22 @@ const login = {
     return token;
   },
 };
+
+const createPost = {
+  type:GraphQLString,
+  description:"Create a new Post",
+  args:{
+    title:{type:GraphQLString},
+    body:{type:GraphQLString},
+  },
+  resolve(_,args){
+    console.log(args)
+    return "New Post Created"
+  }
+}
+
 module.exports = {
   register,
   login,
+  createPost,
 };
