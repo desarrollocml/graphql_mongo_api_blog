@@ -21,13 +21,24 @@ const register = {
       password,
       displayName,
     });
-    await user.save()//insertando datos en BD
-    const token=createJWTToken({username,email,displayName})
-    console.log(token)
+    await user.save(); //insertando datos en BD
+    const token = createJWTToken({ username, email, displayName });
+    //console.log(token)
     return token;
   },
 };
-
+const login = {
+  type: GraphQLString,
+  args: {
+    email: { type: GraphQLString },
+    password: { type: GraphQLString },
+  },
+  async resolve(_, args) {
+    console.log(args);
+    return "login";
+  },
+};
 module.exports = {
   register,
+  login,
 };
