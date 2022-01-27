@@ -1,9 +1,10 @@
 const { GraphQLString } = require("graphql");
 const { User } = require("../models");
+const { createJWTToken } = require("../util/auth");
 
 const register = {
   type: GraphQLString,
-  description: "Register a new User",
+  description: "Register a new User and return a token",
   args: {
     username: { type: GraphQLString },
     email: { type: GraphQLString },
@@ -14,15 +15,16 @@ const register = {
     //" _ " iria "parent" consulta dentro de otra consulta
     //const { username, email, password, displayName } = args;
     //console.log(args);
-    const newUser = new User({//insertando datos en BD
+    const user = new User({
       username,
       email,
       password,
       displayName,
     });
-    const user = await newUser.save()
-    console.log(user);
-    return "new user created";
+    await user.save()//insertando datos en BD
+    const token=createJWTToken({username,email,displayName})
+    console.log(token)
+    return token;
   },
 };
 
