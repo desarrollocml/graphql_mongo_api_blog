@@ -34,7 +34,8 @@ const login = {
     password: { type: GraphQLString },
   },
   async resolve(_, args) {
-    console.log(args);
+    const user = await User.findOne({email:args.email})  
+    console.log(user);
     return "login";
   },
 };
