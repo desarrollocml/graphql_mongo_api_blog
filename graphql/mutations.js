@@ -34,8 +34,10 @@ const login = {
     password: { type: GraphQLString },
   },
   async resolve(_, args) {
-    const user = await User.findOne({email:args.email})  
-    console.log(user);
+    const user = await User.findOne({ email: args.email }).select('+password');
+    if (!user||args.password !== user.password) 
+        throw new Error("Invalid credentials");
+    //console.log(user);
     return "login";
   },
 };
