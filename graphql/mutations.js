@@ -14,13 +14,14 @@ const register = {
     //" _ " iria "parent" consulta dentro de otra consulta
     //const { username, email, password, displayName } = args;
     //console.log(args);
-    const newUser = await User.create({//insertando datos en BD
+    const newUser = new User({//insertando datos en BD
       username,
       email,
       password,
       displayName,
     });
-    //console.log(newUser);
+    const user = await newUser.save()
+    console.log(user);
     return "new user created";
   },
 };
