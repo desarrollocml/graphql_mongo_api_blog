@@ -8,7 +8,7 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true.valueOf,
+      required: true,
       selected: false,
     },
     email: {
@@ -20,7 +20,7 @@ const userSchema = new Schema(
         "Provide a valid email",
       ],
     },
-    displayname: {
+    displayName: {
       type: String,
       required: true,
     },
