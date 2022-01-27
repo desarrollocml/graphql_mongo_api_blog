@@ -1,4 +1,4 @@
-const { GraphQLString } = require("graphql");
+const { GraphQLString, UniqueDirectiveNamesRule } = require("graphql");
 const { User } = require("../models");
 const { createJWTToken } = require("../util/auth");
 
@@ -33,12 +33,18 @@ const login = {
     email: { type: GraphQLString },
     password: { type: GraphQLString },
   },
-  async resolve(_, args) {
-    const user = await User.findOne({ email: args.email }).select('+password');
-    if (!user||args.password !== user.password) 
-        throw new Error("Invalid credentials");
+  async resolve(_, { email, password }) {
+    const user = await User.findOne({ email }).select("+password");
+    if (!user || password !== user.password)
+      throw new Error("Invalid credentials");
+
     //console.log(user);
-    return "login";
+    const token = createJWTToken({
+      _id: user._id,
+      usename: user.username,
+      email: user.email,
+    });
+    return token;
   },
 };
 module.exports = {
