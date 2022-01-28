@@ -1,6 +1,7 @@
 const { GraphQLString, UniqueDirectiveNamesRule } = require("graphql");
 const { User, Post } = require("../models");
 const { createJWTToken } = require("../util/auth");
+const { PostType } = require("./types");
 
 const register = {
   type: GraphQLString,
@@ -54,7 +55,7 @@ const login = {
 };
 
 const createPost = {
-  type: GraphQLString,
+  type: PostType,
   description: "Create a new Post",
   args: {
     title: { type: GraphQLString },
@@ -63,14 +64,14 @@ const createPost = {
   resolve(_, args) {
     console.log(args);
 
-    const newPost = new Post({
+    const post = new Post({
       title: args.title,
       body: args.body,
       authorId: "61f356e584b448660fbd4e08",
     });
 
-    console.log(newPost);
-    return "New Post Created";
+    console.log(post);
+    return post;
   },
 };
 
