@@ -62,7 +62,7 @@ const createPost = {
     body: { type: GraphQLString },
   },
   resolve(_, args, { verifiedUser }) {
-    console.log(verifiedUser);
+    //console.log(verifiedUser);
 
     const post = new Post({
       title: args.title,
@@ -70,7 +70,7 @@ const createPost = {
       authorId: verifiedUser._id,
     });
 
-    console.log(post);
+    //console.log(post);
     return post;
   },
 };
