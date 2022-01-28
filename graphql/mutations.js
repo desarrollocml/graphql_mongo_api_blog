@@ -61,13 +61,13 @@ const createPost = {
     title: { type: GraphQLString },
     body: { type: GraphQLString },
   },
-  resolve(_, args) {
-    console.log(args);
+  resolve(_, args, { verifiedUser }) {
+    console.log(verifiedUser);
 
     const post = new Post({
       title: args.title,
       body: args.body,
-      authorId: "61f356e584b448660fbd4e08",
+      authorId: verifiedUser._id,
     });
 
     console.log(post);

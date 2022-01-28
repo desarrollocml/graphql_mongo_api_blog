@@ -10,4 +10,5 @@ const createJWTToken = (user) => {
 
 module.exports = {
   createJWTToken,
+  JWT_SECRET
 };

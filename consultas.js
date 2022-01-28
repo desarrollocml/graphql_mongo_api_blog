@@ -20,13 +20,20 @@
    mutation{
     createPost(
       
-    title:"my 2 post"
-    body:"this is my 2 p"
-    ){
-    id
-    title
-    body
-    authorId
-  }
-  }
+        title:"my 2 post"
+       body:"this is my 2 p"
+        ){
+          id
+          title
+          body
+          authorId
+       }
+      }
+
+  mutation{
+  login(
+    email:"cml@gmail.com",
+    password:"admin"
+  )
+}
    */
