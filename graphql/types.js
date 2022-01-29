@@ -1,5 +1,6 @@
 const { GraphQLObjectType, GraphQLID, GraphQLString } = require("graphql");
-const {User}= require("../models")
+const { User, Post } = require("../models");
+
 const UserType = new GraphQLObjectType({
   name: "UserType",
   description: "The user type",
@@ -19,12 +20,14 @@ const PostType = new GraphQLObjectType({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
-    author: { type: UserType,resolve(parent){//parent podria ser Post
-     return User.findById(parent.authorId)
-    }
-      
+    author: {
+      type: UserType,
+      resolve(parent) {
+        //parent podria ser Post
+        return User.findById(parent.authorId);
+      },
     },
   },
 });
 
-module.exports = { UserType,PostType };
+module.exports = { UserType, PostType };

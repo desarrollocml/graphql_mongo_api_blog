@@ -20,15 +20,28 @@
    mutation{
     createPost(
       
-        title:"my 2 post"
-       body:"this is my 2 p"
+        title:"my 2 admin2 posts"
+       body:"this is admin2 my 2 p2"
         ){
           id
           title
-          body
-          authorId
+          author{
+            id
+            username
+            email
+            displayName
+            
+          }
        }
       }
+      
+{
+  posts{
+    id
+    title
+    body
+  }
+}
 
   mutation{
   login(
