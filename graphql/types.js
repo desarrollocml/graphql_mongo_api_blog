@@ -30,4 +30,25 @@ const PostType = new GraphQLObjectType({
   },
 });
 
-module.exports = { UserType, PostType };
+const CommentType = new GraphQLObjectType({
+  name: "CommentType",
+  description: "The comment type",
+  fields: {
+    id: { type: GraphQLID },
+    comment: { type: GraphQLString },
+    user: {
+      type: UserType,
+      resolve(parent) {
+        return User.findById(parent.userId);
+      },
+    },
+    post: {
+      type: PostType,
+      resolve(parent) {
+        return Post.findById(parent.postId);
+      },
+    },
+  },
+});
+
+module.exports = { UserType, PostType, CommentType };
