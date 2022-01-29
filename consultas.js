@@ -34,10 +34,30 @@
           }
        }
       }
-      
+
 {
   posts{
     id
+    title
+    body
+  }
+}
+
+{
+  posts{
+    id
+    title
+   author{
+    email
+  }
+  }
+}
+
+{
+  post(id:"61f49af7502ee6cc33b5ceb9"){
+    author{
+      displayName
+    }
     title
     body
   }
