@@ -1,11 +1,7 @@
-const {
-  GraphQLString,
-  UniqueDirectiveNamesRule,
-  GraphQLID,
-} = require("graphql");
-const { User, Post } = require("../models");
+const { GraphQLString, GraphQLID } = require("graphql");
+const { User, Post, Comment } = require("../models");
 const { createJWTToken } = require("../util/auth");
-const { PostType } = require("./types");
+const { PostType, CommentType } = require("./types");
 
 const register = {
   type: GraphQLString,
@@ -119,7 +115,24 @@ const deletePost = {
       authorId: verifiedUser._id,
     });
     if (!postDeleted) throw new Error("Post not found");
-    return "Post deleted"
+    return "Post deleted";
+  },
+};
+
+const addComment = {
+  type: CommentType,
+  description: "Add a comment to a post",
+  args: {
+    comment: { type: GraphQLString },
+    postId: { type: GraphQLID },
+  },
+  async resolve(_, { comment, postId }, { verifiedUser }) {
+    const newComment = new Comment({
+      comment,
+      postId,
+      userId: verifiedUser._id,
+    });
+    return newComment.save();
   },
 };
 
@@ -129,4 +142,5 @@ module.exports = {
   createPost,
   updatePost,
   deletePost,
+  addComment,
 };
