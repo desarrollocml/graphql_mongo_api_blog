@@ -94,4 +94,8 @@ mutation{
   }
 }
 
+mutation{
+  deletePost(postId:"61f49af7502ee6cc33b5ceb9")
+}
+
    */
