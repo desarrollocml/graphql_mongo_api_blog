@@ -54,6 +54,41 @@
 }
 
 {
+  posts{
+    id
+    title
+   comments{
+    comment
+    user{
+      displayName
+    }
+  }
+  }
+}
+
+{
+  posts{
+   title
+    author{
+      displayName
+    }
+   comments{
+    comment
+    user{
+      displayName
+    }
+  }
+  }
+}
+
+mutation{
+  addComment (postId:"61f49bb8640690396a16c7c0",comment:"second comment"){
+    comment
+  }
+  
+}
+
+{
   post(id:"61f49af7502ee6cc33b5ceb9"){
     author{
       displayName
