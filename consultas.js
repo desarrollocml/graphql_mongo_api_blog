@@ -69,4 +69,29 @@
     password:"admin"
   )
 }
+
+mutation {
+  createPost(title: "my 2 admin2 posts", body: "this is admin2 my 2 p2") {
+    id
+    title
+    author {
+      id
+      username
+      email
+      displayName
+    }
+  }
+}
+
+mutation{
+  updatePost(id:"61f49af7502ee6cc33b5ceb9",
+  title:"act post",
+    body:"post actualizado 2"
+  ){
+    title
+    id
+    body
+  }
+}
+
    */
