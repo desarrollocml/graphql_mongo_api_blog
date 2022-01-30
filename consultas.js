@@ -133,4 +133,20 @@ mutation{
   deletePost(postId:"61f49af7502ee6cc33b5ceb9")
 }
 
+{
+  comment(id:"61f4bf223c69dfe3ef7a9cb6"){
+    comment
+    id
+    user {
+      id
+      username
+      displayName
+    }
+    post{
+      body
+      title
+    }
+  }
+}
+
    */

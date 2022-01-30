@@ -7,7 +7,7 @@ const {
   deletePost,
   addComment,
 } = require("./mutations");
-const { users, user, posts, post } = require("./queries");
+const { users, user, posts, post, comments, comment} = require("./queries");
 
 const QueryType = new GraphQLObjectType({
   name: "QueryType",
@@ -17,6 +17,8 @@ const QueryType = new GraphQLObjectType({
     user,
     posts,
     post,
+    comments,
+    comment,
   },
 });
 
