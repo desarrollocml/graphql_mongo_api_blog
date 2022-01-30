@@ -149,4 +149,14 @@ mutation{
   }
 }
 
+
+mutation {
+  updatedComment(
+    id: "61f4bf223c69dfe3ef7a9cb6", 
+    comment: "Nuevo Comentario") {
+    comment
+  }
+}
+
+
    */
