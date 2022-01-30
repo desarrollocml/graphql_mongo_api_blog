@@ -7,6 +7,7 @@ const {
   deletePost,
   addComment,
   updatedComment,
+  deleteComment
 } = require("./mutations");
 const { users, user, posts, post, comments, comment} = require("./queries");
 
@@ -33,7 +34,8 @@ const MutationType = new GraphQLObjectType({
     updatePost,
     deletePost,
     addComment,
-    updatedComment
+    updatedComment,
+    deleteComment,
   },
 });
 
